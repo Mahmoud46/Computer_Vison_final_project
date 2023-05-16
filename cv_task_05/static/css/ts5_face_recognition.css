@@ -1,0 +1,166 @@
+.ts5-op-window.in-op {
+    width: 390px;
+    overflow: hidden;
+}
+
+.ts5-op-window {
+    width: 770px;
+    overflow: hidden;
+    transition: 0.5s ease-in-out all;
+}
+
+.ts5-op-container {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
+
+.ts5-workspace {
+    width: 370px;
+    height: 400px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: solid 1px #000; */
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace .prc-str {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 1, 0, 0.5);
+    backdrop-filter: blur(15px);
+    bottom: -100%;
+    transition: 0.5s ease-in-out all;
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace .prc-str.active {
+    bottom: 0;
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace .prc-str .prc-ts5-cls {
+    position: absolute;
+    top: 0;
+    padding: 10px;
+    font-size: 30px;
+    color: #24b5ff;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: 0.5s ease-in-out all;
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace .prc-str .prc-ts5-cls:hover {
+    opacity: 1;
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace .prc-str .ts5-str {
+    font-size: 150px;
+    border: #24b5ff solid 1px;
+    padding: 20px;
+    border-radius: 50%;
+    color: #24b5ff;
+    transition: 0.5s ease-in-out all;
+    cursor: pointer;
+    position: relative;
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace .prc-str .ts5-str:hover {
+    color: #fff;
+    font-weight: 1000px;
+    border: transparent 1px solid;
+
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace .prc-str .ts5-str::before {
+    position: absolute;
+    content: '';
+    width: 0%;
+    height: 0%;
+    background: #24b5ff;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: 0.5s ease-in-out all;
+
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace .prc-str .ts5-str:hover:before {
+    width: 70%;
+    height: 70%;
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace p span:first-child {
+    font-size: 70px;
+    color: #24b5ff;
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace p span:last-child {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #24b5ff;
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.ts5-workspace.in-op {
+    display: none;
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace img.active {
+    display: block;
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace .ts5-img-rmv-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 25px;
+    padding: 10px;
+    color: #24b5ff;
+    transition: 0.5s ease-in-out all;
+    cursor: pointer;
+    display: none;
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace .ts5-img-rmv-btn.active {
+    display: block;
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace .ts5-dnld-btn:hover,
+.ts5-op-window .ts5-op-container .ts5-workspace .ts5-upld-btn:hover,
+.ts5-op-window .ts5-op-container .ts5-workspace .ts5-img-rmv-btn:hover {
+    color: #fff;
+    background: #24b5ff;
+}
+
+.ts5-op-window .ts5-op-container .ts5-workspace .ts5-dnld-btn,
+.ts5-op-window .ts5-op-container .ts5-workspace .ts5-upld-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: #24b5ff;
+    padding: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.5s ease-in-out all;
+}
