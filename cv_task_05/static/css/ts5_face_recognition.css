@@ -164,3 +164,24 @@
     cursor: pointer;
     transition: 0.5s ease-in-out all;
 }
+
+.t5-show-sub-wind {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    color: #24b5ff;
+    cursor: pointer;
+    font-size: 25px;
+    transition: 0.5s ease-in-out all;
+    display: none;
+}
+
+.t5-show-sub-wind.active {
+    display: block;
+}
+
+.t5-show-sub-wind:hover {
+    color: #fff;
+    background: #24b5ff;
+}

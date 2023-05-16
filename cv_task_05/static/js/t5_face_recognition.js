@@ -10,6 +10,7 @@ let ts5DexWindow = document.querySelector('.face-detection-dex'),
     t5ImgRemoveBtn = document.querySelector('.ts5-img-rmv-btn'),
     prcSubmitWindow = document.querySelector('.prc-str'),
     t5ResWrkSpace = document.querySelector('.ts5-ws-02'),
+    t5ShowSubWindowBtn = document.querySelector('.t5-show-sub-wind'),
     unknownFaceErrorWindow = document.querySelector('.unknown-window ');
 
 let t5Data = {};
@@ -49,6 +50,7 @@ t5WrkSpaceImgInp.addEventListener('input', _ => {
             t5Data.name = file.name;
             t5ImgRemoveBtn.classList.add('active');
             prcSubmitWindow.classList.add('active');
+            t5ShowSubWindowBtn.classList.add('active');
         }
         t5ImgRemoveBtn.addEventListener('click', _ => {
             t5WrkSpaceImg.classList.remove('active');
@@ -58,15 +60,25 @@ t5WrkSpaceImgInp.addEventListener('input', _ => {
             t5WrkSpaceImgInp.value = "";
             ts5OperWindow.classList.contains('in-op') ? "" : ts5OperWindow.classList.add('in-op');
             t5ResWrkSpace.classList.contains('in-op') ? "" : t5ResWrkSpace.classList.add('in-op');
+            t5ShowSubWindowBtn.classList.remove('active');
         });
         reader.readAsDataURL(file);
     }
 });
-prcSubmitWindow.querySelector('.prc-ts5-cls').addEventListener('click', _ => prcSubmitWindow.classList.remove('active'));
+prcSubmitWindow.querySelector('.prc-ts5-cls').addEventListener('click', _ => {
+    prcSubmitWindow.classList.remove('active');
+    t5ShowSubWindowBtn.classList.add('active');
+});
 prcSubmitWindow.querySelector('.ts5-str').addEventListener('click', _ => {
     prcSubmitWindow.classList.remove('active');
+    t5ShowSubWindowBtn.classList.remove('active');
     sendDataToFaceNatching(t5Data);
 });
+
+t5ShowSubWindowBtn.addEventListener('click', _ => {
+    t5ShowSubWindowBtn.classList.remove('active');
+    prcSubmitWindow.classList.add('active');
+})
 
 // function sendDataToFaceNatching() {
 //     console.log(t5Data);
@@ -111,4 +123,7 @@ function sendDataToFaceNatching(data) {
     });
 }
 
-unknownFaceErrorWindow.querySelector('.unf-cls').addEventListener('click', _ => unknownFaceErrorWindow.classList.remove('active'));
+unknownFaceErrorWindow.querySelector('.unf-cls').addEventListener('click', _ => {
+    unknownFaceErrorWindow.classList.remove('active');
+    t5ShowSubWindowBtn.classList.add('active');
+});
