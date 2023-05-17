@@ -24,6 +24,7 @@ import mean_shift as mns
 import rgb_luv as luv
 import spectral_thresholding as spc_thr
 import face_recognition as fcrg
+import face_detection as fcd
 app = Flask(__name__)
 
 
@@ -357,6 +358,33 @@ def face_recognition():
         prs_name = data['person_name']
         res = make_response(
             jsonify({'Message': "Transformation has been done successfully", "img": img, "stat": stat, "prs_name": prs_name}), 200)
+        return res
+
+
+@app.route('/face_detection', methods=['POST', 'GET'])
+def face_detection():
+    if request.method == 'POST':
+        th_imgs_list_up = os.listdir('./static/upload/face_detection/')
+        for img in th_imgs_list_up:
+            path = './static/upload/face_detection/'+img
+            os.remove(path)
+
+        th_imgs_list_dn = os.listdir('./static/download/face_detection/')
+        for img in th_imgs_list_dn:
+            path = './static/download/face_detection/'+img
+            os.remove(path)
+
+        req = request.get_json()
+        upld_img = base64.b64decode(req["img"].split(',')[1])
+
+        upld_img_file = f'./static/upload/face_detection/{req["name"]}'
+
+        with open(upld_img_file, 'wb') as f:
+            f.write(upld_img)
+
+        img = fcd.apply_face_detection(upld_img_file)
+        res = make_response(
+            jsonify({'Message': "Transformation has been done successfully", "img": img}), 200)
         return res
 
 

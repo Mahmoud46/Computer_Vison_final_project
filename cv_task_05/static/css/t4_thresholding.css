@@ -122,7 +122,8 @@
 
 /* Operating Window */
 .ts4-op-window,
-.ts5-op-window {
+.ts5-op-window,
+.ts5-fd-window {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -139,12 +140,14 @@
 }
 
 .ts4-op-window.active,
-.ts5-op-window.active {
+.ts5-op-window.active,
+.ts5-fd-window.active {
     display: block;
 }
 
 .ts4-op-window .ts4-op-tab,
-.ts5-op-window .ts5-op-tab {
+.ts5-op-window .ts5-op-tab,
+.ts5-fd-window .ts5-fd-tab {
     display: flex;
     justify-content: center;
     padding: 20px 30px;
@@ -153,12 +156,14 @@
 }
 
 .ts4-op-window .ts4-op-tab img,
-.ts5-op-window .ts5-op-tab img {
+.ts5-op-window .ts5-op-tab img,
+.ts5-fd-window .ts5-fd-tab img {
     height: 50px;
 }
 
 .ts4-op-window .ts4-op-tab span,
-.ts5-op-window .ts5-op-tab span {
+.ts5-op-window .ts5-op-tab span,
+.ts5-fd-window .ts5-fd-tab span {
     position: absolute;
     font-size: 25px;
     padding: 10px;
@@ -170,7 +175,8 @@
 }
 
 .ts4-op-window .ts4-op-tab span:hover,
-.ts5-op-window .ts5-op-tab span:hover {
+.ts5-op-window .ts5-op-tab span:hover,
+.ts5-fd-window .ts5-fd-tab span:hover {
     background: #24b5ff;
     color: #fff;
 }

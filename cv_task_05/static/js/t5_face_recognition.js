@@ -11,14 +11,26 @@ let ts5DexWindow = document.querySelector('.face-detection-dex'),
     prcSubmitWindow = document.querySelector('.prc-str'),
     t5ResWrkSpace = document.querySelector('.ts5-ws-02'),
     t5ShowSubWindowBtn = document.querySelector('.t5-show-sub-wind'),
-    unknownFaceErrorWindow = document.querySelector('.unknown-window ');
+    unknownFaceErrorWindow = document.querySelector('.unknown-window '),
+    faceRecBtns = document.querySelector('.face-rec-btns'),
+    faceDecWind = document.querySelector('.ts5-fd-window'),
+    tdClsOpBtn = document.querySelector('.ts5-fd-cls-btn'),
+    tdRmvImgBtn = document.querySelector('.ts5-fd-img-rmv-btn'),
+    tdUldImgBtn = document.querySelector('.ts5-fd-upld-btn'),
+    tdUpldImg = document.querySelector('.ts5-fd-01 img'),
+    tdInpImgFile = document.querySelector('.ts5-fd-file'),
+    tdResWrkSpace = document.querySelector('.ts5-fd-02'),
+    tfPrecSubmitWindow = document.querySelector('.prc-str-fd'),
+    tfShowSubWindow = document.querySelector('.t5-fd-show-sub-wind'),
+    tfClsSubWindow = document.querySelector('.prc-fd-ts5-cls'),
+    tdSubmitBtn = document.querySelector('.ts5-fd-str');
 
-let t5Data = {};
+let t5Data = {}, tfData = {};
 ts5OpenDexWindowBtn.addEventListener('click', _ => {
     mainConatiner.classList.add('inactive');
     ts5DexWindow.classList.add('active');
 });
-
+tdUldImgBtn.addEventListener('click', _ => tdInpImgFile.click());
 ts5DexWindowClsBtn.addEventListener('click', _ => {
     mainConatiner.classList.remove('inactive');
     ts5DexWindow.classList.remove('active');
@@ -26,14 +38,41 @@ ts5DexWindowClsBtn.addEventListener('click', _ => {
 
 ts5OpenOperWindowBtn.addEventListener('click', _ => {
     ts5DexWindow.classList.remove('active');
-    ts5OperWindow.classList.add('active');
+    faceRecBtns.classList.add('active');
+    faceRecBtns.querySelectorAll('p').forEach(ele => {
+        if (ele.classList.contains('active')) {
+            if (ele.getAttribute('value') == 'tf-face-recognition')
+                ts5OperWindow.classList.add('active');
+            else
+                faceDecWind.classList.add('active');
+        }
+    })
 });
-
+faceRecBtns.querySelectorAll('p').forEach(ele => {
+    ele.addEventListener('click', _ => {
+        faceRecBtns.querySelector("p.active").classList.remove('active');
+        ele.classList.add('active');
+        if (ele.classList.contains('active')) {
+            if (ele.getAttribute('value') == 'tf-face-recognition') {
+                ts5OperWindow.classList.add('active');
+                faceDecWind.classList.contains('active') ? faceDecWind.classList.remove('active') : '';
+            }
+            else {
+                faceDecWind.classList.add('active');
+                ts5OperWindow.classList.contains('active') ? ts5OperWindow.classList.remove('active') : '';
+            }
+        }
+    })
+})
 ts5ClsOperWindowBtn.addEventListener('click', _ => {
     mainConatiner.classList.remove('inactive');
     ts5OperWindow.classList.remove('active');
+    faceRecBtns.classList.remove('active');
 });
-
+tfClsSubWindow.addEventListener('click', _ => {
+    tfPrecSubmitWindow.classList.remove('active');
+    tfShowSubWindow.classList.add('active');
+})
 ts5UpldBtn.addEventListener('click', _ => t5WrkSpaceImgInp.click());
 t5WrkSpaceImgInp.addEventListener('input', _ => {
     ts5OperWindow.classList.contains('in-op') ? "" : ts5OperWindow.classList.add('in-op');
@@ -65,6 +104,40 @@ t5WrkSpaceImgInp.addEventListener('input', _ => {
         reader.readAsDataURL(file);
     }
 });
+tdInpImgFile.addEventListener('input', _ => {
+    faceDecWind.classList.contains('in-op') ? "" : faceDecWind.classList.add('in-op');
+    tdResWrkSpace.classList.contains('in-op') ? "" : tdResWrkSpace.classList.add('in-op');
+    let file = tdInpImgFile.files[0];
+    if (file) {
+        let reader = new FileReader();
+        console.log(file.name);
+        reader.onload = _ => {
+            let result = reader.result;
+            tdUpldImg.classList.add('active');
+            tdUpldImg.src = result;
+            tfData.img = result;
+            tfData.name = file.name;
+            tdRmvImgBtn.classList.add('active');
+            tfPrecSubmitWindow.classList.add('active');
+            tfShowSubWindow.classList.add('active');
+        }
+        tdRmvImgBtn.addEventListener('click', _ => {
+            tdUpldImg.classList.remove('active');
+            tdRmvImgBtn.classList.remove('active');
+            tfData.img = ""
+            tdUpldImg.src = "";
+            tdInpImgFile.value = "";
+            faceDecWind.classList.contains('in-op') ? "" : faceDecWind.classList.add('in-op');
+            tdResWrkSpace.classList.contains('in-op') ? "" : tdResWrkSpace.classList.add('in-op');
+            tfPrecSubmitWindow.classList.remove('active');
+            tfShowSubWindow.classList.remove('active');
+        });
+        reader.readAsDataURL(file);
+    }
+});
+tfShowSubWindow.addEventListener('click', _ => {
+    tfPrecSubmitWindow.classList.add('active');
+})
 prcSubmitWindow.querySelector('.prc-ts5-cls').addEventListener('click', _ => {
     prcSubmitWindow.classList.remove('active');
     t5ShowSubWindowBtn.classList.add('active');
@@ -131,3 +204,46 @@ unknownFaceErrorWindow.querySelector('.unf-cls').addEventListener('click', _ => 
     unknownFaceErrorWindow.classList.remove('active');
     t5ShowSubWindowBtn.classList.add('active');
 });
+
+
+tdClsOpBtn.addEventListener('click', _ => {
+    mainConatiner.classList.remove('inactive');
+    faceDecWind.classList.remove('active');
+    faceRecBtns.classList.remove('active');
+});
+tdSubmitBtn.addEventListener('click', _ => {
+    console.log(tfData);
+    sendFaceDetection(tfData);
+});
+
+function sendFaceDetection(data) {
+    console.log(data);
+    loader.classList.add('active');
+    fetch(`${window.origin}/face_detection`, {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(data),
+        cache: 'no-cache',
+        headers: new Headers({
+            'content-type': "application/json",
+        }),
+    }).then(response => {
+        if (response.status !== 200) {
+            console.log(`Response status was not 200: ${response.status}`);
+            errorWindow.classList.add('active');
+            loader.classList.remove('active');
+            return;
+        }
+        response.json().then(data => {
+            console.log(data['Message']);
+            console.log(data['img']);
+            faceDecWind.classList.contains('in-op') ? faceDecWind.classList.remove('in-op') : '';
+            tdResWrkSpace.classList.contains('in-op') ? tdResWrkSpace.classList.remove('in-op') : '';
+            tfPrecSubmitWindow.classList.remove('active');
+            loader.classList.remove('active');
+            tdResWrkSpace.querySelector('img').classList.add('active');
+            tdResWrkSpace.querySelector('img').src = data['img'];
+            tfShowSubWindow.classList.remove('active');
+        });
+    });
+}
