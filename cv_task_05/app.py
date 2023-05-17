@@ -351,7 +351,7 @@ def face_recognition():
         with open(upld_img_file, 'wb') as f:
             f.write(upld_img)
 
-        data = fcrg.Visualization(upld_img_file)
+        data = fcrg.Visualization(upld_img_file, int(req['thr']))
         img = data['output_img_path']
         stat = data['matching_case']
         prs_name = data['person_name']

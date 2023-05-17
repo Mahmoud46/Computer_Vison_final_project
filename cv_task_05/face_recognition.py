@@ -46,13 +46,13 @@ w = np.array([np.dot(proj_data, i) for i in normalised_training_tensor])
 # print(w)
 
 
-def Visualization(img_path, train_image_names=train_image_names, proj_data=proj_data, w=w, t0=2.7e7):
+def Visualization(img_path, t0, train_image_names=train_image_names, proj_data=proj_data, w=w):
     unknown_face = cv2.imread(img_path, 0)
     unknown_face = cv2.resize(unknown_face, dsize=(128, 128))
     img = os.path.basename(img_path)
     unknown_face_vector = np.array(unknown_face, dtype='float64').flatten()
     normalised_uface_vector = np.subtract(unknown_face_vector, mean_face)
-
+    print(t0)
     w_unknown = np.dot(proj_data, normalised_uface_vector)
     diff = w - w_unknown
     norms = np.linalg.norm(diff, axis=1)

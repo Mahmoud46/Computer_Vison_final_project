@@ -43,6 +43,54 @@
     backdrop-filter: blur(15px);
     bottom: -100%;
     transition: 0.5s ease-in-out all;
+    flex-direction: column;
+}
+
+.t5-threshold {
+    padding: 10px;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+.t5-thre-input {
+    position: relative;
+    height: 30px;
+}
+
+.t5-threshold span {
+    font-size: 12px;
+    color: #24b5ff;
+}
+
+.t5-thre-input label {
+    position: absolute;
+    color: #24b5ff;
+    font-size: 12px;
+    top: -15px;
+    font-weight: 500;
+}
+
+.t5-thre-input input {
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 10px;
+    color: #24b5ff;
+    font-size: 20px;
+    text-align: center;
+    transition: 0.5s ease-in-out all;
+}
+
+.t5-thre-input input::-webkit-outer-spin-button,
+.t5-thre-input input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.t5-thre-input input:focus {
+    border-bottom: #24b5ff solid 1px;
 }
 
 .ts5-op-window .ts5-op-container .ts5-workspace .prc-str.active {

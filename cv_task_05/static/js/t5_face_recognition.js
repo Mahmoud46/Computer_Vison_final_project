@@ -72,6 +72,7 @@ prcSubmitWindow.querySelector('.prc-ts5-cls').addEventListener('click', _ => {
 prcSubmitWindow.querySelector('.ts5-str').addEventListener('click', _ => {
     prcSubmitWindow.classList.remove('active');
     t5ShowSubWindowBtn.classList.remove('active');
+    t5Data.thr = document.getElementById('t5-thr-input').value;
     sendDataToFaceNatching(t5Data);
 });
 
