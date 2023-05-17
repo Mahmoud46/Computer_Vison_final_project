@@ -80,13 +80,6 @@ t5ShowSubWindowBtn.addEventListener('click', _ => {
     prcSubmitWindow.classList.add('active');
 })
 
-// function sendDataToFaceNatching() {
-//     console.log(t5Data);
-//     loader.classList.add('active');
-//     fetch()
-//     ts5OperWindow.classList.remove('in-op');
-//     t5ResWrkSpace.classList.remove('in-op');
-// }
 function sendDataToFaceNatching(data) {
     console.log(data);
     loader.classList.add('active');
@@ -117,6 +110,16 @@ function sendDataToFaceNatching(data) {
                 t5ResWrkSpace.querySelector('img').classList.add('active');
                 ts5OperWindow.classList.remove('in-op');
                 t5ResWrkSpace.classList.remove('in-op');
+                document.querySelector('.t5-name').innerText = data['prs_name'];
+                let t5Stat = document.querySelector('.t5-stat');
+                if (data['stat'] == 'Matched') {
+                    t5Stat.innerText = 'Matched';
+                    t5Stat.style.color = 'rgb(9, 132, 9)';
+                }
+                else {
+                    t5Stat.innerText = 'False matched';
+                    t5Stat.style.color = 'rgb(137, 11, 11)';
+                }
             }
             loader.classList.remove('active');
         });

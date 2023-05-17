@@ -66,10 +66,10 @@ def Visualization(img_path, train_image_names=train_image_names, proj_data=proj_
 
             my_dict['matching_case'] = 'Matched'
             name, extension = os.path.splitext(train_image_names[index])
-            plt.title(('Matched:  '+name), color='g')
+            # plt.title(('Matched:  '+name), color='g')
         else:
             my_dict['matching_case'] = 'False matched'
-            plt.title('False matched', color='r')
+            # plt.title('False matched', color='r')
 
         out_img = (cv2.imread(TRAIN_IMG_FOLDER + train_image_names[index]))
         my_dict['person_name'] = train_image_names[index].split('_')[0]
@@ -78,7 +78,7 @@ def Visualization(img_path, train_image_names=train_image_names, proj_data=proj_
     else:
         my_dict['matching_case'] = 'Unknown face'
 
-        plt.title('Unknown face', color='r')
+        # plt.title('Unknown face', color='r')
 
     return my_dict
 
