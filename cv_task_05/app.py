@@ -25,6 +25,7 @@ import rgb_luv as luv
 import spectral_thresholding as spc_thr
 import face_recognition as fcrg
 import face_detection as fcd
+import roc
 app = Flask(__name__)
 
 
@@ -352,12 +353,13 @@ def face_recognition():
         with open(upld_img_file, 'wb') as f:
             f.write(upld_img)
 
-        data = fcrg.Visualization(upld_img_file, int(req['thr']))
+        data = roc.Visualization(upld_img_file, int(req['thr']))
         img = data['output_img_path']
         stat = data['matching_case']
         prs_name = data['person_name']
+        roc_img = roc.roc(int(req['thr']))
         res = make_response(
-            jsonify({'Message': "Transformation has been done successfully", "img": img, "stat": stat, "prs_name": prs_name}), 200)
+            jsonify({'Message': "Transformation has been done successfully", "img": img, "stat": stat, "prs_name": prs_name, 'roc': roc_img}), 200)
         return res
 
 

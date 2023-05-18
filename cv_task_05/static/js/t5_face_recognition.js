@@ -23,7 +23,10 @@ let ts5DexWindow = document.querySelector('.face-detection-dex'),
     tfPrecSubmitWindow = document.querySelector('.prc-str-fd'),
     tfShowSubWindow = document.querySelector('.t5-fd-show-sub-wind'),
     tfClsSubWindow = document.querySelector('.prc-fd-ts5-cls'),
-    tdSubmitBtn = document.querySelector('.ts5-fd-str');
+    tdSubmitBtn = document.querySelector('.ts5-fd-str'),
+    tdModelPerformanceWindow = document.querySelector('.roc-com_matrix-cont'),
+    tdModelInfoClsBtn = document.querySelector('.ts5-roc-cls-btn'),
+    tdMdlShowBrn = document.querySelector('span.mdl-prf');
 
 let t5Data = {}, tfData = {};
 ts5OpenDexWindowBtn.addEventListener('click', _ => {
@@ -34,6 +37,14 @@ tdUldImgBtn.addEventListener('click', _ => tdInpImgFile.click());
 ts5DexWindowClsBtn.addEventListener('click', _ => {
     mainConatiner.classList.remove('inactive');
     ts5DexWindow.classList.remove('active');
+});
+tdModelInfoClsBtn.addEventListener('click', _ => {
+    tdModelPerformanceWindow.classList.remove('active');
+    ts5OperWindow.classList.add('active');
+});
+tdMdlShowBrn.addEventListener('click', _ => {
+    tdModelPerformanceWindow.classList.add('active');
+    ts5OperWindow.classList.remove('active');
 });
 
 ts5OpenOperWindowBtn.addEventListener('click', _ => {
@@ -194,6 +205,7 @@ function sendDataToFaceNatching(data) {
                     t5Stat.innerText = 'False matched';
                     t5Stat.style.color = 'rgb(137, 11, 11)';
                 }
+                document.querySelector('.rm-img.roc-img img').src = data['roc'];
             }
             loader.classList.remove('active');
         });

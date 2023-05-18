@@ -123,7 +123,8 @@
 /* Operating Window */
 .ts4-op-window,
 .ts5-op-window,
-.ts5-fd-window {
+.ts5-fd-window,
+.roc-com_matrix-cont {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -141,13 +142,15 @@
 
 .ts4-op-window.active,
 .ts5-op-window.active,
-.ts5-fd-window.active {
+.ts5-fd-window.active,
+.roc-com_matrix-cont.active {
     display: block;
 }
 
 .ts4-op-window .ts4-op-tab,
 .ts5-op-window .ts5-op-tab,
-.ts5-fd-window .ts5-fd-tab {
+.ts5-fd-window .ts5-fd-tab,
+.ts5-roc-tab {
     display: flex;
     justify-content: center;
     padding: 20px 30px;
@@ -157,13 +160,15 @@
 
 .ts4-op-window .ts4-op-tab img,
 .ts5-op-window .ts5-op-tab img,
-.ts5-fd-window .ts5-fd-tab img {
+.ts5-fd-window .ts5-fd-tab img,
+.ts5-roc-tab img {
     height: 50px;
 }
 
 .ts4-op-window .ts4-op-tab span,
 .ts5-op-window .ts5-op-tab span,
-.ts5-fd-window .ts5-fd-tab span {
+.ts5-fd-window .ts5-fd-tab span,
+.ts5-roc-tab span {
     position: absolute;
     font-size: 25px;
     padding: 10px;
@@ -176,7 +181,8 @@
 
 .ts4-op-window .ts4-op-tab span:hover,
 .ts5-op-window .ts5-op-tab span:hover,
-.ts5-fd-window .ts5-fd-tab span:hover {
+.ts5-fd-window .ts5-fd-tab span:hover,
+.ts5-roc-tab span:hover {
     background: #24b5ff;
     color: #fff;
 }
