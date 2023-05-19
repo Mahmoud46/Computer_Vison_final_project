@@ -71,6 +71,7 @@ faceRecBtns.querySelectorAll('p').forEach(ele => {
             else {
                 faceDecWind.classList.add('active');
                 ts5OperWindow.classList.contains('active') ? ts5OperWindow.classList.remove('active') : '';
+                tdModelPerformanceWindow.classList.contains('active') ? tdModelPerformanceWindow.classList.remove('active') : '';
             }
         }
     })
