@@ -357,9 +357,9 @@ def face_recognition():
         img = data['output_img_path']
         stat = data['matching_case']
         prs_name = data['person_name']
-        roc_img = roc.roc(int(req['thr']))
+        # roc_img = roc.roc(int(req['thr']))
         res = make_response(
-            jsonify({'Message': "Transformation has been done successfully", "img": img, "stat": stat, "prs_name": prs_name, 'roc': roc_img}), 200)
+            jsonify({'Message': "Transformation has been done successfully", "img": img, "stat": stat, "prs_name": prs_name,}), 200)
         return res
 
 
@@ -384,7 +384,7 @@ def face_detection():
         with open(upld_img_file, 'wb') as f:
             f.write(upld_img)
 
-        img = fcd.apply_face_detection(upld_img_file)
+        img = fcd.face_detection(upld_img_file,12,5)
         res = make_response(
             jsonify({'Message': "Transformation has been done successfully", "img": img}), 200)
         return res

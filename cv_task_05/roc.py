@@ -6,8 +6,8 @@ from random import randint
 from sklearn.metrics import auc
 
 
-TRAIN_IMG_FOLDER = './static/images/training_data/'
-TEST_IMG_FOLDER = 'images1/Test/'
+TRAIN_IMG_FOLDER = './static/images1/Training images/'
+TEST_IMG_FOLDER = './static/images1/Test/'
 
 width = 128
 height = 128
@@ -29,6 +29,7 @@ for i in range(len(train_image_names)):
 
 for i in range(len(test_image_names)):
     img = cv2.imread((TEST_IMG_FOLDER + test_image_names[i]),0)
+    img = cv2.resize(img, dsize=(128, 128))
     testing_tensor[i,:] = np.array(img, dtype='float64').flatten()
 mean_face = np.mean(training_tensor)
 
@@ -107,6 +108,8 @@ def recogniser(test_image_names, train_image_names,proj_data,w, t0=2e8):
     for img in test_image_names:
 
         unknown_face = cv2.imread((TEST_IMG_FOLDER+img),0)
+        unknown_face = cv2.resize(unknown_face, dsize=(128, 128))
+
         num_images += 1
         
         unknown_face_vector = np.array(unknown_face, dtype='float64').flatten()
@@ -144,7 +147,7 @@ def roc(threshold):
 
 
     FMR_list, FNMR_list = [], []
-    for t0 in np.linspace(start=0, stop=threshold, num=20):
+    for t0 in np.linspace(start=0, stop=10000000, num=10):
         FMR, FNMR = recogniser(test_image_names, train_image_names,proj_data,w, t0)
         
         FMR_list.append(FMR)
@@ -161,7 +164,7 @@ def roc(threshold):
 
     plt.legend(['AUC = %0.2f' % roc_auc])
     plt.grid()
-
+    plt.xlim(0,1)
     # Save figure as PNG image in specific file path and name
     filepath =f'./static/download/edit/{randint(0,9999999999999999)}_roc_img.png'
 

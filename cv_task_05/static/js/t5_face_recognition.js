@@ -205,7 +205,7 @@ function sendDataToFaceNatching(data) {
                     t5Stat.innerText = 'False matched';
                     t5Stat.style.color = 'rgb(137, 11, 11)';
                 }
-                document.querySelector('.rm-img.roc-img img').src = data['roc'];
+                // document.querySelector('.rm-img.roc-img img').src = data['roc'];
             }
             loader.classList.remove('active');
         });
