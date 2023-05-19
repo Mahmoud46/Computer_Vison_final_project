@@ -363,7 +363,7 @@
     z-index: -1;
 }
 
-/* .roc-com_matrix-cont {
+.roc-com_matrix-cont {
     width: 770px;
     overflow: hidden;
     transition: 0.5s ease-in-out all;
@@ -371,11 +371,11 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    
-} */
-.roc-com_matrix-cont {
-    width: 420px;
 }
+
+/* .roc-com_matrix-cont {
+    width: 420px;
+} */
 
 .roc-com_matrix-cont.active {
     display: block;

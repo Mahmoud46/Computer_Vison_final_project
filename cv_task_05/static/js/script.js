@@ -894,7 +894,8 @@ document.querySelector('.pdf-download').addEventListener('click', _ => downloadE
 
 document.querySelector('.source-code').addEventListener('click', _ => {
     let a = document.createElement('a');
-    a.href = 'https://github.com/Computer-Vision-Spring23/a01-team23';
+    a.href = 'https://github.com/Mahmoud46/Computer_Vison_final_project';
+    a.target = '_blank';
     a.click();
 });
 
