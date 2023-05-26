@@ -1,2 +1,2 @@
 # Computer_Vision_final
-![smartmockups_li4cjiz0](https://github.com/Mahmoud46/Computer_Vison_final_project/assets/81241007/1600db6d-5407-4239-9d6e-b4641877a61f)
+![501521 DELL PC with xmas stuff](https://github.com/Mahmoud46/Computer_Vison_final_project/assets/81241007/5f3c732c-08b4-4ee2-9694-b75d166a08a6)
