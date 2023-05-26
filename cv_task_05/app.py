@@ -71,7 +71,7 @@ def handle_filter(img_path, filter_name):
     elif filter_name == "convert_to_grayscale":
         new_path_img = fn.convert_to_gray_scale(img_path)
     elif filter_name == "harris_corner":
-        new_path_img = crn.apply_harris_corner(img_path, 5, 0.04, 0.2)
+        new_path_img = crn.em_harris_corner(img_path)
     return new_path_img
 
 
@@ -359,7 +359,7 @@ def face_recognition():
         prs_name = data['person_name']
         # roc_img = roc.roc(int(req['thr']))
         res = make_response(
-            jsonify({'Message': "Transformation has been done successfully", "img": img, "stat": stat, "prs_name": prs_name,}), 200)
+            jsonify({'Message': "Transformation has been done successfully", "img": img, "stat": stat, "prs_name": prs_name, }), 200)
         return res
 
 
@@ -384,7 +384,7 @@ def face_detection():
         with open(upld_img_file, 'wb') as f:
             f.write(upld_img)
 
-        img = fcd.face_detection(upld_img_file,12,5)
+        img = fcd.face_detection(upld_img_file, 12, 5)
         res = make_response(
             jsonify({'Message': "Transformation has been done successfully", "img": img}), 200)
         return res
