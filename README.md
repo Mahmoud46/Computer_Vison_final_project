@@ -3,7 +3,7 @@
 <h1 align=center>Pixel Computer Vision project</h1>
 <img src="https://github.com/Mahmoud46/Computer_Vison_final_project/assets/81241007/fa3248cd-86dd-4f15-a9c5-bed3d5cb97c4">
 
-##
+## Run
 ```bash
 cd cv_project
 flask run
